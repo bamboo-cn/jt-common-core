@@ -26,11 +26,18 @@ mu-zhuzi
 maven 依赖
 
 ```
-		 <dependency>
-			<groupId>com.bamboo</groupId>
-			<artifactId>xm-common-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency> 
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
+	<dependency>
+	    <groupId>com.github.bamboo-cn</groupId>
+	    <artifactId>jt-common-core</artifactId>
+	    <version>1.0.4</version>
+	</dependency>
 ```
 
 
