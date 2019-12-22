@@ -15,15 +15,15 @@ public class WechatConstants {
 	
 	///常量类（根据商户信息进行设置
 	 //第三方用户唯一ID
-    public static String APPID = "wx3c98fe53457e1f3d";//下了么
+    public static String APPID = "";//下了么
     //第三方用户唯一凭证密码
-    public static String APP_SECRET = "7a743efe6b1abcf686a67e57be336eea";
+    public static String APP_SECRET = "";
     //商户ID
     public static String MCH_ID = "1461496402";
     //微信商户平台-账户设置-安全设置-api安全,配置32位key
-    public static String KEY  = "l4XL58ZiS6ECy1MIRjH8WtgdOpUANEdY";
+    public static String KEY  = "";
     /**微信支付回调url:此处url用于接收微信服务器发送的支付通知，并处理商家的业务*/
-    public static final String NOTIFY_URL = "http://api.vowall.com/web-api/api/weixin/notifyUrl";
+    public static final String NOTIFY_URL = "http://api.xxx.com/web-api/api/weixin/notifyUrl";
     /**微信交易类型:公众号支付*/
     public static final String TRADE_TYPE_JSAPI = "JSAPI";
     /**微信交易类型:原生扫码支付*/

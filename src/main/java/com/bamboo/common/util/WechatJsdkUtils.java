@@ -228,17 +228,10 @@ public class WechatJsdkUtils {
 	}
 
 	public static void main(String[] args) {
-		//String jsapi_ticket = "jsapi_ticket";
-		/***
-		 * wx3c98fe53457e1f3d
-54c80f187aa3cf5c5aef8a29061f4943
-		 */
-//		String appid="wx3c98fe53457e1f3d";
-//		String appSecret="54c80f187aa3cf5c5aef8a29061f4943";
-//		//String url = "http://m.xialeme.com/Home/ZDGY/wx";
-		String appid="wxc5de25c68604e2ef";
-		String appSecret="e7f6c7d3c68ea1a0116fdfb93b0c6bcb";
-		String url = "http://m.vowall.com/MP_verify_JM8tVGIt5F8StdRT.txt";
+
+		String appid="appid";
+		String appSecret="appSecret";
+		String url = "http://m.xx.com/MP_verify_xxxxdRT.txt";//微信给的证书验证文件地址
 		String accessToken=getAccessToken(appid,appSecret);
 		String jsapi_ticket=getJSApiTicket(accessToken);
 		// 注意 URL 一定要动态获取，不能 hardcode

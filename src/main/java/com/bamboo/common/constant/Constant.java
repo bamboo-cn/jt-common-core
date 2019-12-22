@@ -128,6 +128,6 @@ public class Constant {
 	 * 公众号appid
 	 * 公众号秘钥
 	 */
-	public static String APPID = "wx3c98fe53457e1f3d";
-	public static String APPSECRET = "7a743efe6b1abcf686a67e57be336eea";
+	public static String APPID = "wx";
+	public static String APPSECRET = "7a";
 }

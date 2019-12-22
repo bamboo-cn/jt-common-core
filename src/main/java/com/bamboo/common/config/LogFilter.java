@@ -19,6 +19,8 @@ import java.util.Map;
 //import javax.servlet.annotation.WebFilter;
 
 /**
+ * 日志拦截器:打印请求url和参数
+ *
  * Created by lifh on 16/8/19.
  */
 @Order(2)
@@ -50,7 +52,7 @@ public class LogFilter implements Filter {
             filterChain.doFilter(multiReadRequest, servletResponse);
         } catch (RuntimeException e) {
             if(e instanceof GlobException){//如果是你定义的业务异常
-                System.out.println(e.toString());
+                log.info("GlobException:{}",e.toString());
             }
             e.printStackTrace();
         }

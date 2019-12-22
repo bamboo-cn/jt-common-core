@@ -29,8 +29,7 @@ import java.util.*;
 
 
 /**
- * TODO
- * <p>TODO(用一句话描述该文件做什么)
+ * 微信支付工具
  * @Title: WechatPayUtil.java
  * @Package com.bamboo.common.utils
  * @author bamboo  zjcjava@163.com
@@ -369,7 +368,6 @@ public class WechatPayUtils {
 	    
 	    /**
 	     * 生成订单号
-	     * @param openId
 	     * @return
 	     */
 	    public static String getTradeNo() {  
@@ -387,7 +385,7 @@ public class WechatPayUtils {
 	    	String out_trade_no=getTradeNo();
 	    	int total_fee=1;
 	    	String descript="测试";
-	    	String IP="119.123.65.134";
+	    	String IP="192.xxx.11.1";//公网测试白名单
 	    	
 	    	//下单
 	    	try {

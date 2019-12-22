@@ -1,4 +1,4 @@
-package com.xialeme.common.core.beanvalidator;
+package com.bamboo.common.beanvalidator;
 
 /**
  * 添加Bean验证组

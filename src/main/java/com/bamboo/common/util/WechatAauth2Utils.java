@@ -25,14 +25,7 @@ public class WechatAauth2Utils {
 
 
 	private static Logger logger = LoggerFactory.getLogger(WechatAauth2Utils.class);
-	/*******
-	 *
-	 服务号（志愿墙）开发者密码 wx6815292ad1e0450a b7a9931f56249d316e670e6fe05d626f
-	 *
-	 * @param args
-	 *
-	 *            001sBWaR0ZZTv829v0bR0JRFaR0sBWaD
-	 */
+
 
 	/*****
 	 * 1根据code获取AccessToken
@@ -141,9 +134,9 @@ public class WechatAauth2Utils {
 	}
 
 	public static void main(String[] args) {
-		String appid = "wx3c98fe53457e1f3d";
-		String appSecret = "7a743efe6b1abcf686a67e57be336eea";
-		String code = "071tO7hE0xdBue2gItiE0OEbhE0tO7hl";
+		String appid = "ur appid";
+		String appSecret = "appSecret";
+		String code = "client user code";
 		Map<String, String> accessToken = getAccessToken(appid, appSecret, code);
 		// System.out.println(accessToken.get("accessToken"));
 		// Map<String, String> accessToken = refreshToken(appid,

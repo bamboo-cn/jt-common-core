@@ -9,7 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * @Title: SysJob.java 
  * @Package com.xialeme.modules.apply.entity
- * @Description: TODO(用一句话描述该文件做什么) 
+ * @Description: 定时任务job对象
  * @author bamboo  <a href=
  *         "mailto:zjcjava@163.com?subject=hello,bamboo&body=Dear Bamboo:%0d%0a描述你的问题："
  *         Bamboo</a>   
