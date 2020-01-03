@@ -3,7 +3,6 @@
  */
 package com.bamboo.common.util;
 
-import com.google.common.collect.Lists;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -57,7 +56,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	
     /**
      * 转换为字节数组
-     * @param str
+     * @param bytes
      * @return
      */
     public static String toString(byte[] bytes){
@@ -213,7 +212,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		// 用正则表达式取出标记
 		Pattern p = Pattern.compile("<([a-zA-Z]+)[^<>]*>");
 		Matcher m = p.matcher(temp_result);
-		List<String> endHTML = Lists.newArrayList();
+		List<String> endHTML = new ArrayList<>();
 		while (m.find()) {
 			endHTML.add(m.group(1));
 		}

@@ -3,17 +3,12 @@
  */
 package com.bamboo.common.beanvalidator;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 /**
  * JSR303 Validator(Hibernate Validator)工具类.
@@ -54,7 +49,7 @@ public class BeanValidators {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static List<String> extractMessage(Set<? extends ConstraintViolation> constraintViolations) {
-		List<String> errorMessages = Lists.newArrayList();
+		List<String> errorMessages = new ArrayList<>();
 		for (ConstraintViolation violation : constraintViolations) {
 			errorMessages.add(violation.getMessage());
 		}
@@ -73,7 +68,7 @@ public class BeanValidators {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Map<String, String> extractPropertyAndMessage(Set<? extends ConstraintViolation> constraintViolations) {
-		Map<String, String> errorMessages = Maps.newHashMap();
+		Map<String, String> errorMessages = new HashMap<>();
 		for (ConstraintViolation violation : constraintViolations) {
 			errorMessages.put(violation.getPropertyPath().toString(), violation.getMessage());
 		}
@@ -101,21 +96,21 @@ public class BeanValidators {
 	public static List<String> extractPropertyAndMessageAsList(ConstraintViolationException e, String separator) {
 		return extractPropertyAndMessageAsList(e.getConstraintViolations(), separator);
 	}
-	
+
 	/**
 	 * 辅助方法, 转换Set<ConstraintViolation>为List<propertyPath +separator+ message>.
 	 */
 	@SuppressWarnings("rawtypes")
 	public static List<String> extractPropertyAndMessageAsList(Set<? extends ConstraintViolation> constraintViolations,
 			String separator) {
-		List<String> errorMessages = Lists.newArrayList();
+		List<String> errorMessages = new ArrayList<>();
 		for (ConstraintViolation violation : constraintViolations) {
 			errorMessages.add(violation.getPropertyPath() + separator + violation.getMessage());
 		}
 		return errorMessages;
 	}
-	
-	
+
+
 
 	/**
 	 * 辅助方法, 转换ConstraintViolationException中的Set<ConstraintViolations>为List<prefix+propertyPath +separator+ message>.
@@ -123,7 +118,7 @@ public class BeanValidators {
 	public static List<String> extractPropertyAndMessageAsList(ConstraintViolationException e,String prefix,String separator) {
 		return extractPrefixPropertyAndMessageAsList(e.getConstraintViolations(),prefix, separator);
 	}
-	
+
 	/**
 	 * 辅助方法, 转换ConstraintViolationException中的Set<ConstraintViolations>为MAP<propertyPath ,message>.
 	 */
@@ -137,7 +132,7 @@ public class BeanValidators {
 	@SuppressWarnings("rawtypes")
 	public static List<String> extractPrefixPropertyAndMessageAsList(Set<? extends ConstraintViolation> constraintViolations,
 			String prefix,String separator) {
-		List<String> errorMessages = Lists.newArrayList();
+		List<String> errorMessages = new ArrayList<>();
 		for (ConstraintViolation violation : constraintViolations) {
 			errorMessages.add(prefix+violation.getPropertyPath() + separator + violation.getMessage());
 		}

@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @author Zaric
  * @date 2013-5-29 下午1:25:40
  */
-@Service
+@Service("SpringContextHolderTool")
 @Lazy(false)
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
 

@@ -2,7 +2,6 @@ package com.bamboo.common.util;
 
 import com.alibaba.fastjson.JSON;
 import com.bamboo.common.constant.Constant;
-import com.google.common.collect.Maps;
 import com.xialeme.common.core.result.ResultInfo;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.math.RandomUtils;
@@ -25,7 +24,10 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 
 /**
@@ -129,8 +131,8 @@ public class WechatPayUtils {
             outputStream.write(xmlData);
             outputStream.flush();
             outputStream.close();
-            
-            SortedMap<String,Object> resultMap = parseXml(urlConnection.getInputStream());
+
+			HashMap<String,Object> resultMap = parseXml(urlConnection.getInputStream());
             logger.debug("[微信统一下单返回结果:]"+JSON.toJSON(resultMap));  
             
             
@@ -184,8 +186,8 @@ public class WechatPayUtils {
 	     * @param inputStream
 	     * @return 微信返回的参数集合
 	     */
-	    public static SortedMap<String,Object> parseXml(InputStream inputStream) {
-	        SortedMap<String,Object> map = Maps.newTreeMap();
+	    public static HashMap<String,Object> parseXml(InputStream inputStream) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
 	        try {
 	            //获取request输入流
 	            SAXReader reader = new SAXReader();
