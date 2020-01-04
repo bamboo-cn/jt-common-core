@@ -37,12 +37,13 @@ public class SynRedisLockAspect {
             path = this.lockPath(joinPoint, syncLock);
             long lockMs = syncLock.lockMs();
             lockId = this.redisTemplateLock.tryLockScript(path,lockMs > 0L ? lockMs : 9223372036854775807L);
-            log.info("分布式锁SynRedisLock\t {}={}",path,lockMs);
+            log.info("分布式加锁SynRedisLock\t {}={}",path,lockMs);
             var7 = joinPoint.proceed(joinPoint.getArgs());
         } finally {
 
             if (lockId != null && path != null) {
                 this.redisTemplateLock.releaseLock(path, lockId);
+                log.info("分布式解锁SynRedisLock\t {}={}",path,lockId);
             }
 
         }
