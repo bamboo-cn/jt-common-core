@@ -7,7 +7,7 @@ import java.lang.annotation.ElementType;
 
 /**
  * @author: bamboo,zjcjava@163.com
- * @create: 2018/7/30
+ * @time: 2018/7/30
  *<p>分布式锁:REDIS实现方式</p>
  *
  **/
@@ -22,6 +22,8 @@ public @interface SynLockr {
      * 分布式锁的路径
      */
     String path();
+
+    ;
     /**
      * 锁释放时间 默认1秒
      */
