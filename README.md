@@ -23,8 +23,17 @@ mu-zhuzi
     └─email
 ```
 
-maven 依赖
+maven 中央仓库依赖
 
+```$xslt
+<dependency>
+  <groupId>com.github.bamboo-cn</groupId>
+  <artifactId>jt-common-core</artifactId>
+  <version>1.0.1</version>
+</dependency>
+```
+
+以下依赖方式已经作废，推荐MAVEN中央仓库的方式引入
 ```
 	<repositories>
 		<repository>
@@ -41,7 +50,7 @@ maven 依赖
 ```
 
 
-例如，spring-boot web项目启动类
+## spring-boot web项目启动类
 
 ```
 
@@ -65,10 +74,13 @@ import 实现可跨域和日志请求拦截处理
 
 
 
-redis配置
+### 拓展功能配置
 ```
-
-    redis:
+spring:
+    cache: #缓存配置
+        prefix: bamboo #key前缀
+        ttlTime: 2000  #缓存时长单位秒
+    redis: #redis配置同spring-redis配置相同
         host: localhost
         port: 6379
         timeout: 2000
@@ -81,3 +93,21 @@ redis配置
 
 ```
 个别属性如果不配置默认和上面一样,password默认是空值
+
+
+### 默认支持spring cache使用redis做缓存
+- 使用方式和spring cache注解相同
+- 使用fastjson作为序列化
+
+具体使用参考以下地址
+https://blog.csdn.net/zjcjava/article/details/103920388
+
+
+
+## 版更新记录
+
+- 2020-1-10 支持spring cache使用redis做缓存
+- 2020-1-1  支持跨域,redis分布式锁
+
+
+
