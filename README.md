@@ -106,7 +106,7 @@ https://blog.csdn.net/zjcjava/article/details/103920388
 
 ## 版更新记录
 
-- 2020-1-10 支持spring cache使用redis做缓存
+- 2020-1-10 支持spring cache使用redis做缓存,Redis故障或不可用时仍然执行sql层方法使服务可用
 - 2020-1-1  支持跨域,redis分布式锁
 
 
