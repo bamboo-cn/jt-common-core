@@ -50,13 +50,13 @@ maven 中央仓库依赖
 ```
 
 
-## spring-boot web项目启动类
+### spring-boot web项目启动类
 
 ```
-
 @SpringBootApplication
 @RestController
-@Import(value = {CorsConfig.class, LogFilter.class}) //跨域,接口访问请求日志
+@SpringBootApplication(scanBasePackages = {"com.bamboo.common"})//加入扫描路径
+@Import(value = {CorsConfig.class, LogFilter.class,SynRedisLockAspect.class}) //跨域,接口访问请求日志,redis分布式锁
 public class DemoApplication {
 
 	public static void main(String[] args) {
@@ -67,14 +67,42 @@ public class DemoApplication {
 	public Object index(){
 		return "helll demo"+DateUtils.getDate();
 	}
+
+
+    /**分布式锁**/
+    @RequestMapping("/synLock/{uid}")
+	@SynRedisLock(path = "syn:test:%s", indexProps = {"0"})
+	public Object synLock(@PathVariable("uid")Integer uid){
+		redisClient.set("test",uid.toString());
+		try {
+			Thread.sleep(5000);//停顿5秒
+		}catch (Exception e){
+
+		}
+
+		return redisClient.get("test");
+	}
 }
 ```
+根据需要引入工具类
+import 实现可跨域和日志请求拦截处理,分布式锁
 
-import 实现可跨域和日志请求拦截处理
 
+### Reids分布式锁
+```
+    /**分布式锁**/
+    @RequestMapping("/synLock/{uid}")
+	@SynRedisLock(path = "syn:test:%s", indexProps = {"0"})
+    public Object synLock(@PathVariable("uid")Integer uid)
+```
+path:key路径
+indexProps:key路径中替换值对应的参数下标（从0开始）,如果是对象则为:参数名.属性
+```
+	@SynRedisLock(path = "syn:test:%s", indexProps = {"user.id"})
+    public Object synLock(User user)
+```
 
-
-### 拓展功能配置
+### 缓存功能配置
 ```
 spring:
     cache: #缓存配置
@@ -94,6 +122,9 @@ spring:
 ```
 个别属性如果不配置默认和上面一样,password默认是空值
 
+cache配置默认值
+- prefix: spring-cache
+- ttlTime: 3600 一个小时
 
 ### 默认支持spring cache使用redis做缓存
 - 使用方式和spring cache注解相同
@@ -110,4 +141,5 @@ https://blog.csdn.net/zjcjava/article/details/103920388
 - 2020-1-1  支持跨域,redis分布式锁
 
 
-
+## 个人订阅号
+![在这里插入图片描述](https://github.com/BambooZhang/springboot-study/raw/master/20170928183434735.jpg)
