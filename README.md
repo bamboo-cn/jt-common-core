@@ -129,6 +129,19 @@ cache配置默认值
 ### 默认支持spring cache使用redis做缓存
 - 使用方式和spring cache注解相同
 - 使用fastjson作为序列化
+- Cacheable支持自定义单个key设置超时时间
+
+
+自定义单个key设置超时时间,key加上字符串TTL=1000实现扩展单个KEY过期时间
+```$xslt
+    //@Cacheable(key = "T(String).valueOf(#code).concat('TTL=10')")
+    @Cacheable(key = "#code+'TTL=10'")
+    public Double getRetailByCode(Integer code) {
+        RetailRatio retailRatio =  retailRatioMapper.selectByPrimaryKey(code);
+        return retailRatio.getUnratio();
+    }
+```
+以上两种方式都可以(1.0.3版本已经修复)
 
 具体使用参考以下地址
 https://blog.csdn.net/zjcjava/article/details/103920388
@@ -137,8 +150,9 @@ https://blog.csdn.net/zjcjava/article/details/103920388
 
 ## 版更新记录
 
-- 2020-1-10 支持spring cache使用redis做缓存,Redis故障或不可用时仍然执行sql层方法使服务可用
-- 2020-1-1  支持跨域,redis分布式锁
+- 1.0.3[2020-1-15] 修复spring cache单独设置key过期时间bug 
+- 1.0.2[2020-1-10] 支持spring cache使用redis做缓存,Redis故障或不可用时仍然执行sql层方法使服务可用
+- 1.0.1[2020-1-1]  支持跨域,redis分布式锁
 
 
 ## 个人订阅号

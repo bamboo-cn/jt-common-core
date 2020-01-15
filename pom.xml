@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.bamboo-cn</groupId>
     <artifactId>jt-common-core</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <name>jt-common-core</name>
@@ -55,7 +55,7 @@
 
     <properties>
         <spring.boot.version>2.1.5.RELEASE</spring.boot.version>
-        <spring.version>4.3.9.RELEASE</spring.version>
+        <spring.version>5.0.0.RELEASE</spring.version>
         <shiro.version>1.2.3</shiro.version>
         <jackson.version>2.2.3</jackson.version>
         <jedis.version>2.9.0</jedis.version>

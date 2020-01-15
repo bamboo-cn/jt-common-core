@@ -74,7 +74,10 @@ public class RedisConfig extends CachingConfigurerSupport {
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer))
                 .disableCachingNullValues();
 
-        RedisCacheManager cacheManager = RedisCacheManager.builder(redisConnectionFactory)
+        //上面实现的缓存读写
+        CustomerRedisCacheWriter customerCachaWriter = new CustomerRedisCacheWriter(redisConnectionFactory);
+
+        RedisCacheManager cacheManager = RedisCacheManager.builder(customerCachaWriter)
                 .cacheDefaults(config)
                 .build();
         return cacheManager;

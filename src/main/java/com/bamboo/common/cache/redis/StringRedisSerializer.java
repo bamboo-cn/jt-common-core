@@ -52,7 +52,7 @@ public class StringRedisSerializer implements RedisSerializer<String> {
         logger.info ( "cacheConfigProperties={}", JSON.toJSONString(cacheConfigProperties));
         String keyPrefix = cacheConfigProperties.getPrefix();
         String key = keyPrefix +":"+ string;
-        logger.info ( "redis key={},getBytes={}",key, key.getBytes ( DEFAULT_CHARSET ));
+        logger.info ( "redis serialize key={}",key);
         return (key == null ? null : key.getBytes ( DEFAULT_CHARSET ));
     }
 }

@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 
@@ -20,7 +22,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 	private final static String[] parsePatterns = {
 		"yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM", 
 		"yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
-		"yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
+		"yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM",
+		"yyyyMMdd", "yyyyMMddHHmmss", "yyyyMMddHHmm", "yyyyMM"};
 
 	/**
 	 * 得到当前日期字符串 格式（yyyy-MM-dd）
@@ -136,7 +139,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 	}
 	
 	/**
-	 * 获取过去的分钟
+	 * 获取当前时间到过去时间的分钟
 	 * @param date
 	 * @return
 	 */
@@ -196,7 +199,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 	}
 	
 	/***
-	 * 获取指定时间的后一天时间
+	 * 获取指定时间的下一天时间
 	 * @param date
 	 * @return
 	 */
@@ -220,6 +223,147 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 		date = calendar.getTime();
 		return date;
 	}
+
+
+	/**
+	 * 获取本月开始时间
+	 *
+	 * @return
+	 */
+	public static Date getCurrentMonthStartTime() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		calendar.set(Calendar.DAY_OF_MONTH, 0);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		Date date = calendar.getTime();
+		return date;
+	}
+
+
+	/**
+	 * 获取当前时间点多少年之后的时间
+	 *
+	 * @param year
+	 * @return
+	 */
+	public static Date getAfterByYear(int year) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.YEAR, year);
+		Date date = calendar.getTime();
+		return date;
+	}
+
+	/**
+	 * 获取当前时间点多少月之后的时间
+	 *
+	 * @param month
+	 * @return
+	 */
+	public static Date getAfterByMonth(int month) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, month);
+		Date date = calendar.getTime();
+		return date;
+	}
+
+
+	/**
+	 * 获取当前时间点多少天之后的时间
+	 *
+	 * @param day
+	 * @return
+	 */
+	public static Date getAfterByDay(int day) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DATE, day);
+		Date date = calendar.getTime();
+		return date;
+	}
+
+
+
+	/**
+	 * 获取当前时间点多少小时之后的时间
+	 *
+	 * @param hourse
+	 * @return
+	 */
+	public static Date getAfterByHourse(int hourse) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.HOUR, hourse);
+		Date date = calendar.getTime();
+		return date;
+	}
+
+	/**
+	 * 获取某个时间点后多少小时之后的时间
+	 *
+	 * @param hourse
+	 * @return
+	 */
+	public static Date getAfterDateByHourse(Date  startDate,int hourse) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(startDate);
+		calendar.add(Calendar.HOUR, hourse);
+		Date date = calendar.getTime();
+		return date;
+	}
+
+
+	/**
+	 * 获取多少分钟之前的时间
+	 *
+	 * @param minute
+	 * @return
+	 */
+	public static Date getBeforeByMinute(int minute) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.MINUTE, -minute);
+		Date date = calendar.getTime();
+		return date;
+	}
+
+
+
+	/**
+	 * 获取开始时间到结束时间的剩余时间
+	 *
+	 * @return
+	 */
+	public static String getSurplusTime(Date startTime, Date endTime) {
+		//计算剩余天数
+		Calendar cal1 = Calendar.getInstance();
+		cal1.setTime(startTime);
+		Calendar cal2 = Calendar.getInstance();
+		cal2.setTime(endTime);
+		long l = cal2.getTimeInMillis() - cal1.getTimeInMillis();
+
+		Integer ss = 1000;//秒
+		Integer mi = ss * 60;//分
+		Integer hh = mi * 60;//时
+		Integer dd = hh * 24;//天
+
+		long day = l / dd;
+		long hour = (l - day * dd) / hh;
+		long minute = (l - day * dd - hour * hh) / mi;
+
+		Map<String, Object> keyword5 = new HashMap<String, Object>();// 温馨提示
+		StringBuffer timeStr = new StringBuffer();
+		if (day > 0) {
+			timeStr.append(day + "天");
+		}
+		if (hour > 0 && day <= 0) {
+			timeStr.append(hour + "小时");
+		}
+		if (minute > 0 && day <= 0) {
+			timeStr.append(minute + "分钟");
+		}
+		return timeStr.toString();
+	}
+
+
 	
 	/**
 	 * @param args
@@ -232,10 +376,11 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 //		System.out.println(time/(24*60*60*1000));
 		
 		
-		System.out.println(getTimeStamp("2017-06-08 19:41:37"));
-		System.out.println(DateUtils.getDateTime(Long.parseLong("1490254294000")));
-		int a=(int) ((Long.parseLong("1498838399000"))/1000);
-		System.out.println(formatDateTime(getNextDayTime(new Date())));
+//		System.out.println(getTimeStamp("2017-06-08 19:41:37"));
+//		System.out.println(DateUtils.getDateTime(Long.parseLong("1490254294000")));
+//		int a=(int) ((Long.parseLong("1498838399000"))/1000);
+//		System.out.println(formatDateTime(getNextDayTime(new Date())));
+		System.out.println(getAfterByHourse(2));
 
 	}
 }
