@@ -486,12 +486,40 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		return obj;
 		
 	}
-    	
-	
-    
-    
-    
-    
+
+
+
+
+	/**
+	 * 隐藏手机号中间四位 138****1234
+	 * @param phoneNumber
+	 * @return
+	 */
+	public static String hidePhoneNumber(String phoneNumber){
+		return phoneNumber.replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2");
+	}
+
+	/**
+	 * 隐藏身份证号中间十位
+	 * @param idCardNo
+	 * @return
+	 */
+	public static String hideIdCardNo(String idCardNo){
+		return idCardNo.replaceAll("(\\d{4})\\d{10}(\\w{4})","$1****$2");
+	}
+
+	/**
+	 * 隐藏真实姓名
+	 * @param realName
+	 * @return
+	 */
+	public static String hideRealName(String realName){
+		StringBuilder sb = new StringBuilder();
+		String hideStr = realName.substring(0, realName.length() - 1).replaceAll(".", "*");
+		sb.append(hideStr);
+		sb.append(realName.substring( realName.length() - 1));
+		return sb.toString();
+	}
     
     
 }
