@@ -21,11 +21,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("SpringContextHolderTool")
 @Lazy(false)
-public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
+public class SpringContextHolderTool implements ApplicationContextAware, DisposableBean {
 
 	private static ApplicationContext applicationContext = null;
 
-	private static Logger logger = LoggerFactory.getLogger(SpringContextHolder.class);
+	private static Logger logger = LoggerFactory.getLogger(SpringContextHolderTool.class);
 
 	/**
 	 * 取得存储在静态变量中的ApplicationContext.
@@ -82,7 +82,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 		} catch (Exception e) {
 			new RuntimeException(e);
 		}*/
-		SpringContextHolder.applicationContext = applicationContext;
+		SpringContextHolderTool.applicationContext = applicationContext;
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 	 */
 	@Override
 	public void destroy() throws Exception {
-		SpringContextHolder.clearHolder();
+		SpringContextHolderTool.clearHolder();
 	}
 
 	/**
