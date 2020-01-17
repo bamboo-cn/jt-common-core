@@ -1,4 +1,4 @@
-package com.bamboo.common.util;
+package com.bamboo.common.util.wechat;
 
 import java.io.BufferedReader;
 import java.io.IOException;

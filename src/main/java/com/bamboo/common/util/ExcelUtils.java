@@ -83,7 +83,6 @@ public class ExcelUtils {
      * @param headMap 属性-key-列名:key在遍历数据集时使用
      * @param jsonArray 数据集:遍历数据集时使用headMap中的key
      * @param datePattern 日期格式，null则用默认日期格式
-     * @param colWidth 列宽 默认 至少17个字节
      * @param out 输出流
      */
     public static void exportExcel(String title,Map<String, String> headMap,JSONArray jsonArray,String datePattern, OutputStream out) {
@@ -221,7 +220,6 @@ public class ExcelUtils {
      * @param headMap 属性-key-列名:key在遍历数据集时使用
      * @param jsonArray 数据集:遍历数据集时使用headMap中的key
      * @param datePattern 日期格式，传null值则默认 年月日
-     * @param colWidth 列宽 默认 至少17个字节
      * @param out 输出流
      */
     public static void exportExcelX(String title,Map<String, String> headMap,JSONArray jsonArray,String datePattern, OutputStream out) {

@@ -1,7 +1,10 @@
-package com.bamboo.common.util;
+package com.bamboo.common.util.wechat;
 
 import com.alibaba.fastjson.JSON;
 import com.bamboo.common.constant.Constant;
+import com.bamboo.common.util.DateUtils;
+import com.bamboo.common.util.EncryptUtils;
+import com.bamboo.common.util.StringUtils;
 import com.xialeme.common.core.result.ResultInfo;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.math.RandomUtils;
@@ -374,7 +377,7 @@ public class WechatPayUtils {
 	     */
 	    public static String getTradeNo() {  
 	    	 int rannum = (int) (RandomUtils.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
-	    	String out_trade_no=DateUtils.getDate("yyyyMMddHHmmssSSS")+rannum;
+	    	String out_trade_no= DateUtils.getDate("yyyyMMddHHmmssSSS")+rannum;
 	    	
 	    	return out_trade_no;
 	    }

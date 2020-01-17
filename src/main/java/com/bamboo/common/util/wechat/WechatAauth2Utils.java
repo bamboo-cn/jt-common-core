@@ -1,4 +1,4 @@
-package com.bamboo.common.util;
+package com.bamboo.common.util.wechat;
 
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;

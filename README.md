@@ -6,6 +6,13 @@
 mu-zhuzi
 
 
+## 版更新记录
+- 1.0.4[2020-1-17] GsonUtil工具类,身份证验证和手机号码隐藏中间部位
+- 1.0.3[2020-1-15] 修复spring cache单独设置key过期时间bug 
+- 1.0.2[2020-1-10] 支持spring cache使用redis做缓存,Redis故障或不可用时仍然执行sql层方法使服务可用
+- 1.0.1[2020-1-1]  支持跨域,redis分布式锁
+
+
 ## 常用通用方法集合
 
 ```
@@ -146,13 +153,39 @@ cache配置默认值
 具体使用参考以下地址
 https://blog.csdn.net/zjcjava/article/details/103920388
 
+### GsonUtil工具类
+
+GsonUtil提供了常用的对象转json字符串以及反向转换
+```
+        Map<String,String> headMap = new LinkedHashMap<String,String>();
+        headMap.put("name","姓名");
+        headMap.put("age","20");
+        headMap.put("birthday","1990-12-20");
+        headMap.put("height","180");
+        headMap.put("weight","120");
+        headMap.put("sex","m");
+
+        //map转str
+        String str =GsonUtil.toJSONString(headMap);
+        System.out.println(str);
+        //str转obj
+        Student  student= GsonUtil.parseObject(str,Student.class);
+        System.out.println(GsonUtil.toJSONString(student));
+        System.out.println(student.getBirthday());
+        System.out.println(student.getName());
+
+        //list转str
+       List<Student> list = new ArrayList<Student>();
+        list.add(student);
+        str =GsonUtil.toJSONString(list);
+        System.out.println(str);
+        //str转list
+        list= GsonUtil.parseObjectList(str,Student.class);
+        student = list.get(0);
+        System.out.println(student.getName());
+```
 
 
-## 版更新记录
-
-- 1.0.3[2020-1-15] 修复spring cache单独设置key过期时间bug 
-- 1.0.2[2020-1-10] 支持spring cache使用redis做缓存,Redis故障或不可用时仍然执行sql层方法使服务可用
-- 1.0.1[2020-1-1]  支持跨域,redis分布式锁
 
 
 ## 个人订阅号
